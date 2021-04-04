@@ -37,9 +37,8 @@ dependencies:
   # such as the temp and app data directories.
   path_provider: ^2.0.1
 
-  # Lightweight and blazing fast key-value database written in pure Dart. 
-  # Strongly encrypted using AES-256.
-  hive: ^2.0.2
+  # A fast, extra light and synchronous key-value storage written entirely in Dart
+  get_storage: ^2.0.2
 
   # Open screens/snackbars/dialogs without context, manage states and 
   # inject dependencies easily with GetX.
