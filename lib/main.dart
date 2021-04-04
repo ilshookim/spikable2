@@ -8,25 +8,13 @@ import 'ui.dart';
 // 4. handling to logging and function stack
 
 void main() {
-  prepareApp();
-  runApp(MainPage());
-}
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-bool prepareApp() {
-  final String function = Trace.current().frames[0].member!;
-  bool succeed = false;
-  try {
-    Logger.root.level = Level.ALL;
-    Logger.root.onRecord.listen((record) {
-      print('[${record.time}][${record.level.name}] ${record.message}');
-    });
-    WidgetsFlutterBinding.ensureInitialized();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    succeed = true;
-  } catch (exc) {
-    Logger.root.warning('$function: $exc');
-  } finally {
-    Logger.root.info('$function[$succeed]: logger.level=${Logger.root.level}');
-  }
-  return succeed;
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    print('[${record.time}]->${record.level.name} ${record.message}');
+  });
+
+  runApp(MainPage());
 }
