@@ -1,5 +1,5 @@
-name: spikable
-description: spikable to make rapid initial development environment.
+name: spikable2
+description: spikable2 to make rapid initial development environment with null safety.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
