@@ -37,6 +37,9 @@ dependencies:
   # such as the temp and app data directories.
   path_provider: ^2.0.1
 
+  # Flutter package that allows setting the web app URL strategy with a single line of code.
+  url_strategy: ^0.2.0
+
   # A fast, extra light and synchronous key-value storage written entirely in Dart
   get_storage: ^2.0.2
 
@@ -55,6 +58,9 @@ dependencies:
 
   # A wrapper around InheritedWidget to make them easier to use and more reusable.
   provider: ^5.0.0
+
+  # A package to include fonts from fonts.google.com in your Flutter app.
+  google_fonts: ^2.0.0
 
   # Easily make Flutter apps responsive. Automatically adapt UI to different screen sizes. 
   # Responsiveness made simple.
@@ -80,7 +86,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/0.png
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

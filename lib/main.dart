@@ -29,9 +29,12 @@ Future<bool> prepareApp() async {
       print('[${record.time}][${record.level.name}] ${record.message}');
     });
 
+    // Remove the leading hash (#) from the URL
+    setPathUrlStrategy();
+    
     // Storage initialization
     await GetStorage.init();
-    
+
     succeed = true;
   }
   catch (exc) {

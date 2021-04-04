@@ -19,7 +19,7 @@ class MainPage extends StatelessWidget {
         return Routes.fadeThrough(settings, (context) {
           switch (settings.name) {
             case Routes.home:
-              return HomePage();
+              return LandingPage();
             case Routes.post:
               return HomePage();
             case Routes.style:
