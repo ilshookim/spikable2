@@ -6,10 +6,11 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      translations: AppLocale(),
-      locale: AppLocale.defaultLocale,
-      fallbackLocale: AppLocale.fallbackLocale,
-      onGenerateTitle: (BuildContext context) => 'hello'.tr,
+      debugShowCheckedModeBanner: false,
+      translations: Language(),
+      locale: Language.defaultLocale,
+      fallbackLocale: Language.fallbackLocale,
+      onGenerateTitle: (BuildContext context) => '${Global.title}'.tr,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: HomePage(),
     );

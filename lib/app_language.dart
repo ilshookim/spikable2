@@ -1,29 +1,23 @@
-import 'ui.dart';
+import 'lang/ko_KR.dart';
+import 'lang/en_US.dart';
+import 'app.dart';
 
-class AppLocale extends Translations {
-  static final Map<String, String> enUS = {
-    'hello': 'Hello!',
-  };
-
-  static final Map<String, String> koKR = {
-    'hello': '안녕!',
-  };
-
+class Language extends Translations {
   static final Locale defaultLocale = supportLocales[0];
   static final Locale fallbackLocale = supportLocales[1];
   static final supportLanguages = [
-    'English',
-    '한국어',
+    Global.english,
+    Global.korean,
   ];
   static final supportLocales = [
-    Locale('ko', 'KR'),
-    Locale('en', 'US'),
+    Locale(Global.ko, Global.KR),
+    Locale(Global.en, Global.US),
   ];
 
   @override
   Map<String, Map<String, String>> get keys => {
-    'en_US': enUS,
-    'ko_KR': koKR,
+    '${Global.en}_${Global.US}': enUS,
+    '${Global.ko}_${Global.KR}': koKR,
   };
 
   void changeLocale(String language) {
