@@ -56,6 +56,13 @@ dependencies:
   # A wrapper around InheritedWidget to make them easier to use and more reusable.
   provider: ^5.0.0
 
+  # Easily make Flutter apps responsive. Automatically adapt UI to different screen sizes. 
+  # Responsiveness made simple.
+  responsive_framework: ^0.1.0
+
+  # Fancy pre-built animations that can easily be integrated into any Flutter application.
+  animations: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
