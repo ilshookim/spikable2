@@ -6,4 +6,8 @@ class Global {
   static const String KR = 'KR';
   static const String en = 'en';
   static const String US = 'US';
+
+  static const String keyDownEvent = 'RawKeyDownEvent';
+  static const double oneLine = 100;
+  static const int keyInterval = 420;
 }

@@ -30,7 +30,7 @@ Future<bool> prepareApp() async {
     });
 
     // Remove the leading hash (#) from the URL
-    setPathUrlStrategy();
+    // setPathUrlStrategy();
     
     // Storage initialization
     await GetStorage.init();
