@@ -7,94 +7,61 @@ const String listItemPreviewText =
     "Sed elementum tempus egestas sed sed risus. Mauris in aliquam sem fringilla ut morbi tincidunt. Placerat vestibulum lectus mauris ultrices eros. Et leo duis ut diam. Auctor neque vitae tempus […]";
 
 class LandingPage extends StatelessWidget {
-  final Logger logger = Logger('LandingPage');
+  static const String id = '/landing';
+  final Logger logger = Logger(id);
   final ScrollController scrollController = ScrollController();
+
+  void onKeyEvent(RawKeyEvent event) {
+    final String function = Trace.current().frames[0].member!;
+    try {
+      final bool keyDownEvent = '${event.runtimeType}' == 'RawKeyDownEvent';
+      if (!keyDownEvent) return;
+
+      final double top = 0;
+      final double line = 100;
+      final double page = Get.height;
+      final double half = page / 2;
+      final double bottom = scrollController.position.maxScrollExtent;
+      final bool keyUp = event.isKeyPressed(LogicalKeyboardKey.arrowUp);
+      final bool keyDown = event.isKeyPressed(LogicalKeyboardKey.arrowDown);
+      final bool keyLeft = event.isKeyPressed(LogicalKeyboardKey.arrowLeft);
+      final bool keyRight = event.isKeyPressed(LogicalKeyboardKey.arrowRight);
+      final bool keyPageUp = event.isKeyPressed(LogicalKeyboardKey.pageUp);
+      final bool keyPageDown = event.isKeyPressed(LogicalKeyboardKey.pageDown);
+      final bool keySpace = event.isKeyPressed(LogicalKeyboardKey.space);
+      final bool keyHome = event.isKeyPressed(LogicalKeyboardKey.home);
+      final bool keyEnd = event.isKeyPressed(LogicalKeyboardKey.end);
+
+      double scrollTo = scrollController.offset;
+      if (keyUp) scrollTo -= line;
+      if (keyDown) scrollTo += line;
+      if (keyLeft) scrollTo -= half;
+      if (keyRight) scrollTo += half;
+      if (keyPageUp) scrollTo -= page;
+      if (keyPageDown) scrollTo += page;
+      if (keySpace) scrollTo += page;
+      if (keyHome) scrollTo = top;
+      if (keyEnd) scrollTo = bottom;
+
+      final bool upper = scrollTo < top - page;
+      final bool lower = scrollTo > bottom + page;
+      final bool scroll = !upper && !lower;
+      if (scroll) scrollController.jumpTo(scrollTo);
+    }
+    catch (exc) {
+      logger.warning('$function: $exc');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    DateTime oldKeyTime = DateTime.now();
-    RawKeyEvent? oldKeyEvent;
-
     return Scaffold(
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 32),
         child: RawKeyboardListener(
           autofocus: true,
           focusNode: FocusNode(),
-          onKey: (RawKeyEvent event) {
-            const double oneLine = Global.oneLine;
-            const int keyInterval = Global.keyInterval;
-            final DateTime newKeyTime = DateTime.now();
-            final int keyElapsed = newKeyTime.millisecondsSinceEpoch - oldKeyTime.millisecondsSinceEpoch;
-            final bool keyValid = oldKeyEvent == null || (oldKeyEvent != null && oldKeyEvent != event && keyElapsed > keyInterval);
-            oldKeyEvent = event;
-            if (keyValid) {
-              oldKeyTime = newKeyTime;
-              if ('${event.runtimeType}' == Global.keyDownEvent) {
-                const int scrollDuration = keyInterval;
-                double scrollTo = scrollController.offset;
-                if (event.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
-                  scrollTo -= oneLine;
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
-                  scrollTo += oneLine;
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.arrowLeft)) {
-                  if (scrollTo <= 0) {
-                    scrollTo -= oneLine;
-                  } else {
-                    scrollTo -= MediaQuery.of(context).size.height / 2;
-                  }
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
-                  if (scrollTo >= scrollController.position.maxScrollExtent) {
-                    scrollTo += oneLine;
-                  } else {
-                    scrollTo += MediaQuery.of(context).size.height / 2;
-                  }
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.pageUp)) {
-                  if (scrollTo == 0) {
-                    scrollTo -= oneLine;
-                  } else {
-                    scrollTo -= MediaQuery.of(context).size.height;
-                  }
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.pageDown)) {
-                  if (scrollTo >= scrollController.position.maxScrollExtent) {
-                    scrollTo += oneLine;
-                  } else {
-                    scrollTo += MediaQuery.of(context).size.height;
-                  }
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.home)) {
-                  if (scrollTo <= 0) {
-                    scrollTo -= oneLine;
-                  } else {
-                    scrollTo = 0;
-                  }
-                }
-                else if (event.isKeyPressed(LogicalKeyboardKey.end)) {
-                  if (scrollTo >= scrollController.position.maxScrollExtent) {
-                    scrollTo += oneLine;
-                  } else {
-                    scrollTo = scrollController.position.maxScrollExtent;
-                  }
-                }
-
-                if (scrollTo < -oneLine) {
-                  scrollTo = 0;
-                } else if (scrollTo > scrollController.position.maxScrollExtent + oneLine) {
-                  scrollTo = scrollController.position.maxScrollExtent;
-                }
-
-                scrollController.animateTo(
-                  scrollTo,
-                  duration: Duration(milliseconds: scrollDuration),
-                  curve: Curves.ease);
-              }
-            }
-          },
+          onKey: onKeyEvent,
           child: ListView(
             controller: scrollController,
             children: [

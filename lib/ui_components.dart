@@ -393,7 +393,7 @@ class ListItem extends StatelessWidget {
           child: Container(
             margin: marginBottom24,
             child: ReadMoreButton(
-              onPressed: () => Navigator.pushNamed(context, Routes.post),
+              onPressed: () => Navigator.pushNamed(context, HomePage.id),
             ),
           ),
         ),
@@ -458,7 +458,7 @@ class MenuBar extends StatelessWidget {
                       ),
                       FlatButton(
                         onPressed: () =>
-                            Navigator.pushNamed(context, Routes.style),
+                            Navigator.pushNamed(context, HomePage.id),
                         child: Text(
                           "STYLE",
                           style: buttonTextStyle,

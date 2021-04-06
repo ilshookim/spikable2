@@ -5,6 +5,8 @@ import 'app.dart';
 import 'ui.dart';
 
 class HomePage extends StatelessWidget {
+  static const String id = '/home';
+
   HomePage({Key? key}) : super(key: key);
 
   final Controller controller = Get.put(Controller());

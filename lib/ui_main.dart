@@ -15,24 +15,9 @@ class MainPage extends StatelessWidget {
       onGenerateTitle: (BuildContext context) => '${Global.title}'.tr,
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: Routes.home,
-      onGenerateRoute: (RouteSettings settings) {
-        return Routes.fadeThrough(settings, (context) {
-          switch (settings.name) {
-            case Routes.home:
-              return LandingPage();
-            case Routes.post:
-              return HomePage();
-            case Routes.style:
-              return HomePage();
-            default:
-              return SizedBox.shrink();
-          }
-        });
-      },
+      getPages: Routes.pages,
       builder: (context, widget) => ResponsiveWrapper.builder(
         BouncingScrollWrapper.builder(context, widget!),
-        // maxWidth: 1200,
-        // minWidth: 450,
         defaultScale: true,
         breakpoints: [
           ResponsiveBreakpoint.resize(450, name: MOBILE),

@@ -33,7 +33,7 @@ Future<bool> prepareApp() async {
     // setPathUrlStrategy();
     
     // Storage initialization
-    await GetStorage.init();
+    // await GetStorage.init();
 
     succeed = true;
   }
