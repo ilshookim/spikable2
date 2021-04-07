@@ -28,7 +28,8 @@ class LandingPage extends StatelessWidget {
                   imageUrl: 'assets/images/iphone_cactus_tea_overhead_bw_w1080.jpg',
                   title: 'archive'.tr,
                   description: 'archiveHint'.tr,
-                  pageId: LandingPage.id),
+                  pageId: LandingPage.id,
+                  allOff: true),
               divider,
               ListItem(
                   imageUrl: 'assets/images/paper_flower_overhead_bw_w1080.jpg',

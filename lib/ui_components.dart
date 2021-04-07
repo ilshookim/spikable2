@@ -290,9 +290,10 @@ class ListItem extends StatelessWidget {
   final String? imageUrl;
   final String? description;
   final String? pageId;
+  final bool? allOff;
 
   const ListItem(
-      {Key? key, required this.title, this.imageUrl, this.description, this.pageId})
+      {Key? key, required this.title, this.imageUrl, this.description, this.pageId, this.allOff})
       : super(key: key);
 
   @override
@@ -331,7 +332,9 @@ class ListItem extends StatelessWidget {
           child: Container(
             margin: marginBottom24,
             child: ReadMoreButton(
-              onPressed: () => Get.toNamed(pageId!),
+              onPressed: () => (allOff != null && allOff == true) 
+                ? Get.offAll(pageId, transition: Transition.noTransition) 
+                : Get.toNamed(pageId!),
             ),
           ),
         ),
@@ -357,7 +360,7 @@ class MenuBar extends StatelessWidget {
           child: Row(
             children: <Widget>[
               GestureDetector(
-                onTap: () => Get.offAll(LandingPage(), 
+                onTap: () => Get.offAll(LandingPage.id, 
                   transition: Transition.noTransition),
                 child: Text(menuLogo,
                   style: GoogleFonts.montserrat(
@@ -372,7 +375,7 @@ class MenuBar extends StatelessWidget {
                   child: Wrap(
                     children: <Widget>[
                       TextButton(
-                        onPressed: () => Get.offAll(LandingPage(), 
+                        onPressed: () => Get.offAll(LandingPage.id, 
                           transition: Transition.noTransition),
                         child: Text(menuHome, style: buttonTextStyle),
                         style: buttonStyle,
@@ -383,7 +386,7 @@ class MenuBar extends StatelessWidget {
                         style: buttonStyle,
                       ),
                       TextButton(
-                        onPressed: () => Get.to(HomePage()),
+                        onPressed: () => Get.toNamed(HomePage.id),
                         child: Text(menuBlog, style: buttonTextStyle),
                         style: buttonStyle,
                       ),
