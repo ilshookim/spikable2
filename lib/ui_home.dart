@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     final String pushButtonHint = 'pushButtonHint'.tr;
     return Scaffold(
       appBar: AppBar(
-        title: Text('${Global.title}'.tr),
+        title: Text('title'.tr),
       ),
       body: Center(
         child: Column(

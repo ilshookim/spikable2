@@ -12,7 +12,7 @@ class MainPage extends StatelessWidget {
       translations: Language(),
       locale: Language.defaultLocale,
       fallbackLocale: Language.fallbackLocale,
-      onGenerateTitle: (BuildContext context) => '${Global.title}'.tr,
+      onGenerateTitle: (BuildContext context) => 'title'.tr,
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: Routes.home,
       getPages: Routes.pages,

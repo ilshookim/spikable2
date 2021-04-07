@@ -1,7 +1,7 @@
 import 'app.dart';
 
 class Global {
-  static const String title = 'title';
+  // constants
   static const String english = 'english';
   static const String korean = '한국어';
   static const String ko = 'ko';
@@ -9,6 +9,7 @@ class Global {
   static const String en = 'en';
   static const String US = 'US';
 
+  // functions
   static void scrollTo(RawKeyEvent event, ScrollController scrollController) {
     final String function = Trace.current().frames[0].member!;
     final Logger logger = Logger(function);

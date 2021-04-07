@@ -191,7 +191,7 @@ class ReadMoreButton extends StatelessWidget {
           borderSide: BorderSide(color: textPrimary, width: 2),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            "READ MORE",
+            'readmore'.tr,
             style: GoogleFonts.montserrat(
               textStyle: TextStyle(
                   fontSize: 14,
@@ -341,7 +341,7 @@ class Footer extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 40),
       child: Align(
         alignment: Alignment.centerRight,
-        child: TextBody(text: "Copyright © 2020"),
+        child: TextBody(text: 'copyright'.tr),
       ),
     );
   }
@@ -423,7 +423,7 @@ class MenuBar extends StatelessWidget {
               GestureDetector(
                 onTap: () => Navigator.popUntil(
                     context, ModalRoute.withName(Navigator.defaultRouteName)),
-                child: Text("MINIMAL",
+                child: Text("UJOONET",
                     style: GoogleFonts.montserrat(
                         color: textPrimary,
                         fontSize: 30,
@@ -449,7 +449,7 @@ class MenuBar extends StatelessWidget {
                       FlatButton(
                         onPressed: () {},
                         child: Text(
-                          "PORTFOLIO",
+                          "PRICING",
                           style: buttonTextStyle,
                         ),
                         splashColor: Colors.transparent,
@@ -460,7 +460,7 @@ class MenuBar extends StatelessWidget {
                         onPressed: () =>
                             Navigator.pushNamed(context, HomePage.id),
                         child: Text(
-                          "STYLE",
+                          "BLOG",
                           style: buttonTextStyle,
                         ),
                         splashColor: Colors.transparent,
@@ -480,7 +480,7 @@ class MenuBar extends StatelessWidget {
                       FlatButton(
                         onPressed: () {},
                         child: Text(
-                          "CONTACT",
+                          "FAQ",
                           style: buttonTextStyle,
                         ),
                         splashColor: Colors.transparent,

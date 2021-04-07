@@ -26,15 +26,15 @@ class LandingPage extends StatelessWidget {
               MenuBar(),
               ListItem(
                   imageUrl:
-                      "assets/images/paper_flower_overhead_bw_w1080.jpg",
-                  title: listItemTitleText,
-                  description: listItemPreviewText),
+                      "assets/images/iphone_cactus_tea_overhead_bw_w1080.jpg",
+                  title: 'archive'.tr,
+                  description: 'archiveHint'.tr),
               divider,
               ListItem(
                   imageUrl:
-                      "assets/images/iphone_cactus_tea_overhead_bw_w1080.jpg",
-                  title: listItemTitleText,
-                  description: listItemPreviewText),
+                      "assets/images/paper_flower_overhead_bw_w1080.jpg",
+                  title: 'imagine'.tr,
+                  description: 'imagineHint'.tr),
               divider,
               ListItem(
                   imageUrl:
@@ -54,10 +54,10 @@ class LandingPage extends StatelessWidget {
                   title: listItemTitleText,
                   description: listItemPreviewText),
               divider,
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 80),
-                child: ListNavigation(),
-              ),
+              // Container(
+              //   padding: EdgeInsets.symmetric(vertical: 80),
+              //   child: ListNavigation(),
+              // ),
               divider,
               Footer(),
             ],
