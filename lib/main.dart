@@ -26,7 +26,7 @@ Future<bool> prepareApp() async {
     // Logger default level and print logs
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
-      print('[${record.time}][${record.level.name}] ${record.message}');
+      print('[${record.time}][${record.level.name}][${record.loggerName}] ${record.message}');
     });
 
     // Remove the leading hash (#) from the URL

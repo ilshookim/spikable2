@@ -11,48 +11,6 @@ class LandingPage extends StatelessWidget {
   final Logger logger = Logger(id);
   final ScrollController scrollController = ScrollController();
 
-  void onKeyEvent(RawKeyEvent event) {
-    final String function = Trace.current().frames[0].member!;
-    try {
-      final bool keyDownEvent = '${event.runtimeType}' == 'RawKeyDownEvent';
-      if (!keyDownEvent) return;
-
-      final double top = 0;
-      final double line = 100;
-      final double page = Get.height;
-      final double half = page / 2;
-      final double bottom = scrollController.position.maxScrollExtent;
-      final bool keyUp = event.isKeyPressed(LogicalKeyboardKey.arrowUp);
-      final bool keyDown = event.isKeyPressed(LogicalKeyboardKey.arrowDown);
-      final bool keyLeft = event.isKeyPressed(LogicalKeyboardKey.arrowLeft);
-      final bool keyRight = event.isKeyPressed(LogicalKeyboardKey.arrowRight);
-      final bool keyPageUp = event.isKeyPressed(LogicalKeyboardKey.pageUp);
-      final bool keyPageDown = event.isKeyPressed(LogicalKeyboardKey.pageDown);
-      final bool keySpace = event.isKeyPressed(LogicalKeyboardKey.space);
-      final bool keyHome = event.isKeyPressed(LogicalKeyboardKey.home);
-      final bool keyEnd = event.isKeyPressed(LogicalKeyboardKey.end);
-
-      double scrollTo = scrollController.offset;
-      if (keyUp) scrollTo -= line;
-      if (keyDown) scrollTo += line;
-      if (keyLeft) scrollTo -= half;
-      if (keyRight) scrollTo += half;
-      if (keyPageUp) scrollTo -= page;
-      if (keyPageDown) scrollTo += page;
-      if (keySpace) scrollTo += page;
-      if (keyHome) scrollTo = top;
-      if (keyEnd) scrollTo = bottom;
-
-      final bool upper = scrollTo < top - page;
-      final bool lower = scrollTo > bottom + page;
-      final bool scroll = !upper && !lower;
-      if (scroll) scrollController.jumpTo(scrollTo);
-    }
-    catch (exc) {
-      logger.warning('$function: $exc');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +19,7 @@ class LandingPage extends StatelessWidget {
         child: RawKeyboardListener(
           autofocus: true,
           focusNode: FocusNode(),
-          onKey: onKeyEvent,
+          onKey: (RawKeyEvent event) => Global.scrollTo(event, scrollController),
           child: ListView(
             controller: scrollController,
             children: [
