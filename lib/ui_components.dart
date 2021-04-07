@@ -35,6 +35,9 @@ TextStyle bodyTextStyle = GoogleFonts.openSans(
 TextStyle buttonTextStyle = GoogleFonts.montserrat(
     textStyle: TextStyle(fontSize: 14, color: textPrimary, letterSpacing: 1));
 
+ButtonStyle buttonStyle = TextButton.styleFrom(
+  padding: EdgeInsets.symmetric(horizontal: 20));
+
 class TextBody extends StatelessWidget {
   final String text;
 
@@ -181,6 +184,7 @@ class ReadMoreButton extends StatelessWidget {
     bool hover = false;
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
+      final String readmore = 'readmore'.tr;
       return MouseRegion(
         onHover: (event) => setState(() => hover = true),
         onExit: (event) => setState(() => hover = false),
@@ -191,7 +195,7 @@ class ReadMoreButton extends StatelessWidget {
           borderSide: BorderSide(color: textPrimary, width: 2),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'readmore'.tr,
+            readmore,
             style: GoogleFonts.montserrat(
               textStyle: TextStyle(
                   fontSize: 14,
@@ -267,94 +271,28 @@ List<Widget> authorSection(
   ];
 }
 
-class PostNavigation extends StatelessWidget {
-  // TODO Get PostID from Global Routing Singleton.
-  // Example: String currentPage = RouteController.of(context).currentPage;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Icon(
-              Icons.keyboard_arrow_left,
-              size: 25,
-              color: textSecondary,
-            ),
-            Text("PREVIOUS POST", style: buttonTextStyle),
-          ],
-        ),
-        Spacer(),
-        Row(
-          children: <Widget>[
-            Text("NEXT POST", style: buttonTextStyle),
-            Icon(
-              Icons.keyboard_arrow_right,
-              size: 25,
-              color: textSecondary,
-            ),
-          ],
-        )
-      ],
-    );
-  }
-}
-
-class ListNavigation extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Icon(
-              Icons.keyboard_arrow_left,
-              size: 25,
-              color: textSecondary,
-            ),
-            Text("NEWER POSTS", style: buttonTextStyle),
-          ],
-        ),
-        Spacer(),
-        Row(
-          children: <Widget>[
-            Text("OLDER POSTS", style: buttonTextStyle),
-            Icon(
-              Icons.keyboard_arrow_right,
-              size: 25,
-              color: textSecondary,
-            ),
-          ],
-        )
-      ],
-    );
-  }
-}
-
 class Footer extends StatelessWidget {
-  // TODO Add additional footer components (i.e. about, links, logos).
   @override
   Widget build(BuildContext context) {
+    final String copyright = 'copyright'.tr;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 40),
       child: Align(
         alignment: Alignment.centerRight,
-        child: TextBody(text: 'copyright'.tr),
+        child: TextBody(text: copyright),
       ),
     );
   }
 }
 
 class ListItem extends StatelessWidget {
-  // TODO replace with Post item model.
   final String title;
   final String? imageUrl;
   final String? description;
+  final String? pageId;
 
   const ListItem(
-      {Key? key, required this.title, this.imageUrl, this.description})
+      {Key? key, required this.title, this.imageUrl, this.description, this.pageId})
       : super(key: key);
 
   @override
@@ -393,7 +331,7 @@ class ListItem extends StatelessWidget {
           child: Container(
             margin: marginBottom24,
             child: ReadMoreButton(
-              onPressed: () => Navigator.pushNamed(context, HomePage.id),
+              onPressed: () => Get.toNamed(pageId!),
             ),
           ),
         ),
@@ -402,17 +340,15 @@ class ListItem extends StatelessWidget {
   }
 }
 
-// ignore: slash_for_doc_comments
-/**
- * Menu/Navigation Bar
- *
- * A top menu bar with a text or image logo and
- * navigation links. Navigation links collapse into
- * a hamburger menu on screens smaller than 400px.
- */
 class MenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final String menuLogo = 'menuLogo'.tr;
+    final String menuHome = 'menuHome'.tr;
+    final String menuPricing = 'menuPricing'.tr;
+    final String menuBlog = 'menuBlog'.tr;
+    final String menuAbout = 'menuAbout'.tr;
+    final String menuFaq = 'menuFaq'.tr;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -421,71 +357,45 @@ class MenuBar extends StatelessWidget {
           child: Row(
             children: <Widget>[
               GestureDetector(
-                onTap: () => Navigator.popUntil(
-                    context, ModalRoute.withName(Navigator.defaultRouteName)),
-                child: Text("UJOONET",
-                    style: GoogleFonts.montserrat(
-                        color: textPrimary,
-                        fontSize: 30,
-                        letterSpacing: 3,
-                        fontWeight: FontWeight.w500)),
+                onTap: () => Get.offAll(LandingPage(), 
+                  transition: Transition.noTransition),
+                child: Text(menuLogo,
+                  style: GoogleFonts.montserrat(
+                    color: textPrimary,
+                    fontSize: 30,
+                    letterSpacing: 3,
+                    fontWeight: FontWeight.w500)),
               ),
               Flexible(
                 child: Container(
                   alignment: Alignment.centerRight,
                   child: Wrap(
                     children: <Widget>[
-                      FlatButton(
-                        onPressed: () => Navigator.popUntil(context,
-                            ModalRoute.withName(Navigator.defaultRouteName)),
-                        child: Text(
-                          "HOME",
-                          style: buttonTextStyle,
-                        ),
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
+                      TextButton(
+                        onPressed: () => Get.offAll(LandingPage(), 
+                          transition: Transition.noTransition),
+                        child: Text(menuHome, style: buttonTextStyle),
+                        style: buttonStyle,
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
-                        child: Text(
-                          "PRICING",
-                          style: buttonTextStyle,
-                        ),
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
+                        child: Text(menuPricing, style: buttonTextStyle),
+                        style: buttonStyle,
                       ),
-                      FlatButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, HomePage.id),
-                        child: Text(
-                          "BLOG",
-                          style: buttonTextStyle,
-                        ),
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
+                      TextButton(
+                        onPressed: () => Get.to(HomePage()),
+                        child: Text(menuBlog, style: buttonTextStyle),
+                        style: buttonStyle,
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
-                        child: Text(
-                          "ABOUT",
-                          style: buttonTextStyle,
-                        ),
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
+                        child: Text(menuAbout, style: buttonTextStyle),
+                        style: buttonStyle,
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
-                        child: Text(
-                          "FAQ",
-                          style: buttonTextStyle,
-                        ),
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
+                        child: Text(menuFaq, style: buttonTextStyle),
+                        style: buttonStyle,
                       ),
                     ],
                   ),

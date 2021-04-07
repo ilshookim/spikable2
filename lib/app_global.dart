@@ -56,6 +56,7 @@ class Global {
   }
 }
 
+// disabled logging
 // ignore: camel_case_types
 class logger0 {
   static finest(msg) { }

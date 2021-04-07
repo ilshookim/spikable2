@@ -25,39 +25,31 @@ class LandingPage extends StatelessWidget {
             children: [
               MenuBar(),
               ListItem(
-                  imageUrl:
-                      "assets/images/iphone_cactus_tea_overhead_bw_w1080.jpg",
+                  imageUrl: 'assets/images/iphone_cactus_tea_overhead_bw_w1080.jpg',
                   title: 'archive'.tr,
-                  description: 'archiveHint'.tr),
+                  description: 'archiveHint'.tr,
+                  pageId: LandingPage.id),
               divider,
               ListItem(
-                  imageUrl:
-                      "assets/images/paper_flower_overhead_bw_w1080.jpg",
+                  imageUrl: 'assets/images/paper_flower_overhead_bw_w1080.jpg',
                   title: 'imagine'.tr,
-                  description: 'imagineHint'.tr),
+                  description: 'imagineHint'.tr,
+                  pageId: HomePage.id),
               divider,
               ListItem(
-                  imageUrl:
-                      "assets/images/typewriter_overhead_bw_w1080.jpg",
+                  imageUrl: 'assets/images/typewriter_overhead_bw_w1080.jpg',
                   title: listItemTitleText,
                   description: listItemPreviewText),
               divider,
               ListItem(
-                  imageUrl:
-                      "assets/images/coffee_paperclips_pencil_angled_bw_w1080.jpg",
+                  imageUrl: 'assets/images/coffee_paperclips_pencil_angled_bw_w1080.jpg',
                   title: listItemTitleText,
                   description: listItemPreviewText),
               divider,
               ListItem(
-                  imageUrl:
-                      "assets/images/joy_note_coffee_eyeglasses_overhead_bw_w1080.jpg",
+                  imageUrl: 'assets/images/joy_note_coffee_eyeglasses_overhead_bw_w1080.jpg',
                   title: listItemTitleText,
                   description: listItemPreviewText),
-              divider,
-              // Container(
-              //   padding: EdgeInsets.symmetric(vertical: 80),
-              //   child: ListNavigation(),
-              // ),
               divider,
               Footer(),
             ],
