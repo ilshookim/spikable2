@@ -1,6 +1,6 @@
 
 final Map<String, String> enUS = {
-  'title': 'UJOONET',
+  'title': 'UJOONET - Imagination to Reality',
   'pushButtonHint': 'You have pushed the button this many times:',
   'menuLogo': 'UJOONET',
   'menuHome': 'HOME',

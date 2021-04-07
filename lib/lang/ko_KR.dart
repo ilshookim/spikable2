@@ -1,6 +1,6 @@
 
 final Map<String, String> koKR = {
-  'title': '우주넷',
+  'title': '우주넷 - 상상을 현실로',
   'pushButtonHint': '버튼을 누르세요:',
   'menuLogo': 'UJOONET',
   'menuHome': '홈',
